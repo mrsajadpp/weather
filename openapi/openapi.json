@@ -1,0 +1,55 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Weather API",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://weather.spotitinc.repl.co/"
+  } ],
+  "paths" : {
+    "/weather/{city}" : {
+      "get" : {
+        "operationId" : "getWeather",
+        "parameters" : [ {
+          "description" : "The name of the city for which to fetch weather information",
+          "explode" : false,
+          "in" : "path",
+          "name" : "city",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getWeather_200_response"
+                }
+              }
+            },
+            "description" : "Weather information for the specified city"
+          }
+        },
+        "summary" : "Get weather information for a city",
+        "x-codegen-request-body-name" : "empty"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "getWeather_200_response" : {
+        "properties" : {
+          "temperature" : {
+            "description" : "The temperature in Celsius degrees",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}

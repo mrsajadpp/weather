@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Weather API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /weather/{city}:
+    get:
+      summary: Get weather information for a city
+      parameters:
+        - in: path
+          name: city
+          required: true
+          description: The name of the city for which to fetch weather information
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Weather information for the specified city
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: string
+                    description: The temperature in Celsius degrees
+      x-codegen-request-body-name: empty
+      operationId: getWeather
